@@ -1,41 +1,27 @@
-# Website
+## Docusaurus Guide
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+### Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- **Node.js** (>= 14.x)
+- **npm** or **yarn**
 
 ### Installation
 
-```
-$ yarn
-```
+To set up the project, install dependencies:
 
-### Local Development
-
-```
-$ yarn start
+```bash
+cd my-docs
+npm install
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+### Running the Web App
 
-### Build
+Start the development server:
 
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
+```bash
+npm run dev
 ```
 
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Visit [http://localhost:3000](http://localhost:3000) in your browser.

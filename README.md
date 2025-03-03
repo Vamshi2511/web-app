@@ -27,13 +27,6 @@ npm run dev
 
 Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
-For a production build:
-
-```bash
-npm run build
-npm start
-```
-
 ### Running on Mobile
 
 To run the app on a mobile device:
