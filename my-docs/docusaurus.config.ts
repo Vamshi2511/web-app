@@ -81,7 +81,7 @@ const config: Config = {
           label: "Documentation",
         },
         {
-          href: "https://github.com/Vamshi2511",
+          href: "https://github.com/Vamshi2511/web-app",
           label: "GitHub",
           position: "right",
         },
@@ -104,7 +104,7 @@ const config: Config = {
           items: [
             {
               label: "GitHub",
-              href: "https://github.com/Vamshi2511",
+              href: "https://github.com/Vamshi2511/web-app",
             },
           ],
         },

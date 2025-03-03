@@ -12,7 +12,7 @@ Before you begin, ensure you have the following installed:
 To set up the project, clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/your-repo/crypto-dashboard.git
+git clone https://github.com/Vamshi2511/web-app.git
 cd crypto-dashboard
 npm install
 ```
