@@ -1,3 +1,9 @@
+---
+id: project-setup
+title: Crypto Dashboard - Project Setup
+sidebar_label: 2. Project Setup
+---
+
 ## Project Setup Guide
 
 ### Prerequisites
