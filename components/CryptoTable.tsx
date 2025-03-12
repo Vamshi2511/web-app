@@ -4,6 +4,7 @@ import {
   getCoreRowModel,
   getSortedRowModel,
   getFilteredRowModel,
+  getPaginationRowModel,
   ColumnDef,
   flexRender,
 } from "@tanstack/react-table";
@@ -25,22 +26,28 @@ const CryptoTable: FC<CryptoTableProps> = ({ cryptoData }) => {
   const columns: ColumnDef<Crypto>[] = [
     {
       accessorKey: "name",
-      header: () => <span style={{ float: "left", paddingLeft: "15px" }}>Name</span>,
+      header: () => (
+        <span style={{ float: "left", paddingLeft: "15px" }}>Name</span>
+      ),
       enableSorting: false,
       cell: (info) => (
         <div style={companyCellStyle}>
-            <img
-                src={info.row.original.image}
-                alt={info.getValue() as string}
-                width={35}
-                height={35}
-                style={{ display: "block" }}
-            />
-            <div style={{textAlign: "left"}}>
-                <span style={{ fontWeight: "bold" }}>{info.getValue()}</span>
-                <br />
-                <span style={{ fontWeight: "light", fontSize: "small", color: "grey" }}>{info.row.original.symbol.toUpperCase()}</span>
-            </div>
+          <img
+            src={info.row.original.image}
+            alt={info.getValue() as string}
+            width={35}
+            height={35}
+            style={{ display: "block" }}
+          />
+          <div style={{ textAlign: "left" }}>
+            <span style={{ fontWeight: "bold" }}>{info.getValue()}</span>
+            <br />
+            <span
+              style={{ fontWeight: "light", fontSize: "small", color: "grey" }}
+            >
+              {info.row.original.symbol.toUpperCase()}
+            </span>
+          </div>
         </div>
       ),
     },
@@ -48,6 +55,39 @@ const CryptoTable: FC<CryptoTableProps> = ({ cryptoData }) => {
       accessorKey: "current_price",
       header: "Price ($)",
       cell: (info) => `$${(info.getValue() as number).toFixed(2)}`,
+    },
+    {
+      accessorKey: "price_change_percentage_1h_in_currency",
+      header: "1h",
+      cell: (info) => (
+        <span
+          style={{ color: (info.getValue() as number) > 0 ? "green" : "red" }}
+        >
+          {(info.getValue() as number).toFixed(2)}%
+        </span>
+      ),
+    },
+    {
+      accessorKey: "price_change_percentage_24h",
+      header: "24h",
+      cell: (info) => (
+        <span
+          style={{ color: (info.getValue() as number) > 0 ? "green" : "red" }}
+        >
+          {(info.getValue() as number).toFixed(2)}%
+        </span>
+      ),
+    },
+    {
+      accessorKey: "price_change_percentage_7d_in_currency",
+      header: "7d",
+      cell: (info) => (
+        <span
+          style={{ color: (info.getValue() as number) > 0 ? "green" : "red" }}
+        >
+          {(info.getValue() as number).toFixed(2)}%
+        </span>
+      ),
     },
     {
       accessorKey: "market_cap",
@@ -69,12 +109,13 @@ const CryptoTable: FC<CryptoTableProps> = ({ cryptoData }) => {
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
   });
 
   return (
     <div style={{ maxWidth: 800, margin: "auto", padding: "20px" }}>
       {/* Global Search Input */}
-    
+
       <table style={tableStyle}>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -85,8 +126,15 @@ const CryptoTable: FC<CryptoTableProps> = ({ cryptoData }) => {
                   onClick={header.column.getToggleSortingHandler()}
                   style={headerCellStyle}
                 >
-                  {flexRender(header.column.columnDef.header, header.getContext())}
-                  {header.column.getIsSorted() === "asc" ? " 🔼" : header.column.getIsSorted() === "desc" ? " 🔽" : ""}
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext()
+                  )}
+                  {header.column.getIsSorted() === "asc"
+                    ? " 🔼"
+                    : header.column.getIsSorted() === "desc"
+                    ? " 🔽"
+                    : ""}
                 </th>
               ))}
             </tr>
@@ -117,7 +165,7 @@ const tableStyle: React.CSSProperties = {
 
 const headerRowStyle: React.CSSProperties = {
   background: "#0070f3",
-  color: "white"
+  color: "white",
 };
 
 const headerCellStyle: React.CSSProperties = {
@@ -134,7 +182,7 @@ const companyCellStyle: React.CSSProperties = {
   ...cellStyle,
   display: "flex",
   alignItems: "center",
-//   justifyContent: "center",
+  //   justifyContent: "center",
   gap: "10px",
 };
 
