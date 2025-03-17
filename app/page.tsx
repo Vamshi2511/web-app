@@ -6,6 +6,7 @@ import SearchBar from "../components/SearchBar";
 import CryptoTable from "../components/CryptoTable";
 import LoadingOverlay from "../components/LoadingOverlay";
 import ErrorMessage from "../components/ErrorMessage";
+import ThemeToggle from "../components/ThemeToggle";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -29,7 +30,14 @@ export default function Home() {
   );
 
   return (
-    <div style={{ maxWidth: 800, margin: "auto", position: "relative", padding: "20px" }}>
+    <div
+      style={{
+        maxWidth: 800,
+        margin: "auto",
+        position: "relative",
+        padding: "20px",
+      }}
+    >
       <h1 style={{ textAlign: "center", marginBottom: "20px" }}>
         Cryptocurrency Market Data
       </h1>
@@ -58,6 +66,7 @@ export default function Home() {
         >
           Refresh Prices
         </button>
+        <ThemeToggle />
       </div>
 
       {/* Display error message in UI if there's an error */}
