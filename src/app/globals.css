@@ -1,15 +1,19 @@
+/* ✅ Import Tailwind CSS */
 @import "tailwindcss";
 
+/* ✅ Define Global Theme Variables */
 @theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* ✅ Light Mode (Default) */
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
+/* ✅ Dark Mode Styles */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -17,13 +21,69 @@
   }
 }
 
+/* ✅ Apply Theme Variables to Body */
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* styles/CryptoTable.module.css */
+/* ✅ Apply Theme to Light and Dark Modes */
+.light {
+  --background: #ffffff;
+  --foreground: #000000;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.dark {
+  --background: #121212;
+  --foreground: #ffffff;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* ✅ Smooth Transition for Theme Change */
+.light,
+.dark {
+  height: 100%;
+  width: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ✅ Ensure Full-Screen Dark Mode */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* ✅ Style for Buttons */
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ✅ Light Mode Button */
+.light button {
+  background: #000;
+  color: #fff;
+  border: 1px solid #ccc;
+}
+
+/* ✅ Dark Mode Button */
+.dark button {
+  background: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+/* ✅ Table Styles (CryptoTable.module.css) */
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -42,6 +102,16 @@ body {
   border-bottom: 1px solid #ccc;
 }
 
+/* ✅ Ensure Table Text Follows Theme */
+.light .table {
+  color: #000;
+}
+
+.dark .table {
+  color: #fff;
+}
+
+/* ✅ Style for CryptoTable Rows */
 .companyCell {
   display: flex;
   align-items: center;
@@ -49,52 +119,32 @@ body {
   gap: 10px;
 }
 
-/* Light Mode (Default) */
-.light {
-  background-color: #ffffff;
-  color: #000000;
+/* ✅ Light Mode Placeholder */
+.light input::placeholder {
+  color: #555 !important; /* Darker gray for visibility */
+  opacity: 1; /* Ensures visibility */
 }
 
-/* Dark Mode */
-.dark {
-  background-color: #121212;
-  color: #ffffff;
+/* ✅ Dark Mode Placeholder */
+.dark input::placeholder {
+  color: #b0b0b0 !important; /* Lighter gray for better contrast */
+  opacity: 1; /* Ensures visibility */
 }
 
-/* Smooth Transition for Theme Change */
-.light,
-.dark {
-  height: 100%;
-  width: 100%;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-/* Style for Buttons */
-button {
-  padding: 10px 15px;
+/* ✅ General Input Styling */
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   font-size: 16px;
-  border: none;
-  cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease;
+  background: var(--background);
+  color: var(--foreground);
+  transition: all 0.3s ease;
 }
 
-/* Light Mode Button */
-.light button {
-  background: #000;
-  color: #fff;
-  border: 1px solid #ccc;
-}
-
-/* Dark Mode Button */
-.dark button {
-  background: #fff;
-  color: #000;
-  border: 1px solid #ccc;
+/* ✅ Ensure Focus Style Looks Good in Both Themes */
+input:focus {
+  outline: none;
+  border-color: #0070f3;
+  box-shadow: 0 0 5px rgba(0, 112, 243, 0.5);
 }

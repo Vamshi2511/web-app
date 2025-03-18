@@ -10,9 +10,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider>
       <ThemeWrapper>
-        <QueryClientProvider client={queryClient}>
-          {children}
-        </QueryClientProvider>
+        <body>
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
+        </body>
       </ThemeWrapper>
     </ThemeProvider>
   );
