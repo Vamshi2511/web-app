@@ -36,8 +36,12 @@ export async function GET() {
     lastFetchTime = now;
     console.log("Fetched Crypto Data:", response.data);
     return NextResponse.json(response.data);
-  } catch (error: any) {
-    console.error("Error fetching from CoinGecko:", error.message || error);
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error("Error fetching from CoinGecko:", error.message);
+    } else {
+      console.error("Unexpected error:", error);
+    }
     return NextResponse.json(
       { error: "Failed to fetch data" },
       { status: 500 }

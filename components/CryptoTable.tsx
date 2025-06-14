@@ -1,4 +1,4 @@
-import { FC, useState, useMemo } from "react";
+import { FC, useState } from "react";
 import {
   useReactTable,
   getCoreRowModel,
@@ -7,6 +7,7 @@ import {
   getPaginationRowModel,
   ColumnDef,
   flexRender,
+  SortingState,
 } from "@tanstack/react-table";
 import { Crypto } from "../lib/fetchCrypto";
 
@@ -19,7 +20,7 @@ const CryptoTable: FC<CryptoTableProps> = ({ cryptoData }) => {
   const [globalFilter, setGlobalFilter] = useState<string>("");
 
   // State for sorting (using built-in sorting from React Table)
-  const [sorting, setSorting] = useState<any>([]);
+  const [sorting, setSorting] = useState<SortingState>([]);
 
   // Define columns with built-in sorting enabled by default.
   // (Filtering is built in; the global filter is applied automatically by getFilteredRowModel.)
