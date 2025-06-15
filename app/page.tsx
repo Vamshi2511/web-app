@@ -7,11 +7,13 @@ import CryptoTable from "../components/CryptoTable";
 import LoadingOverlay from "../components/LoadingOverlay";
 import ErrorMessage from "../components/ErrorMessage";
 import ThemeToggle from "../components/ThemeToggle";
+import ChatBotToggle from "../components/ChatBotToggle";
+import ChatWindow from "../components/ChatWindow";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [showChat, setShowChat] = useState(false);
 
-  // Use React Query to fetch data.
   const {
     data: cryptoData = [],
     isLoading,
@@ -24,7 +26,6 @@ export default function Home() {
     queryFn: fetchCryptoData,
   });
 
-  // Filter data based on search query.
   const filteredData = cryptoData.filter((coin) =>
     coin.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -42,7 +43,6 @@ export default function Home() {
         Cryptocurrency Market Data
       </h1>
 
-      {/* Container for Search Bar and Refresh Button with proper spacing */}
       <div
         style={{
           display: "flex",
@@ -69,13 +69,13 @@ export default function Home() {
         <ThemeToggle />
       </div>
 
-      {/* Display error message in UI if there's an error */}
       {isError && <ErrorMessage error={error} />}
-
-      {/* Show loading overlay while fetching data */}
       {(isLoading || isFetching) && <LoadingOverlay />}
-
       <CryptoTable cryptoData={filteredData} />
+
+      {/* ✅ Chatbot Components Rendered in the DOM */}
+      <ChatBotToggle onClick={() => setShowChat((prev) => !prev)} />
+      {showChat && <ChatWindow onClose={() => setShowChat(false)} />}
     </div>
   );
 }
